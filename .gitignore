@@ -1,0 +1,5 @@
+node_modules
+env.development
+.cache/
+package-lock.json
+public/
