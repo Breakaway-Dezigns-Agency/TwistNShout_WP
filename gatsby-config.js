@@ -55,32 +55,6 @@ module.exports = {
         url: `https://twistandshoutevents.com/graphql`,
       }
     },
-    // {
-    //   resolve: `gatsby-source-wordpress`,
-    //   options: {
-    //     url:
-    //       process.env.WPGRAPHQL_URL ||
-    //       `https://twistandshoutevents.com/graphql`,
-    //   }
-      // resolve: `gatsby-source-wordpress`,
-      // baseUrl: `https://twistandshoutevents.com/graphql`,
-      // protocol: "https",
-      // minimizeDeprecationNotice: true,
-      // hostingWPCOM: false,
-      // useACF: false,
-      // verboseOutput: false,
-      // perPage: 100,
-      // concurrentRequests: 10,
-      // includedRoutes: [
-      //   "**/categories",
-      //   "**/posts",
-      //   "**/pages",
-      //   "**/media",
-      //   "**/tags",
-      //   "**/taxonomies",
-      //   "**/users",
-      // ],
-    // },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,

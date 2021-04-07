@@ -1,6 +1,6 @@
 import React from "react"
 import Layout from "../components/layout"
-import { graphql, StaticQuery } from 'gatsby'
+import { graphql, Link, StaticQuery } from 'gatsby'
 
 
 export default function Home() {
@@ -18,14 +18,21 @@ export default function Home() {
               }
             }
           }
+          posts {
+            nodes {
+              id
+              slug
+              title
+              content
+            }
+          }
         }
       }`} render={props =>(
         <div>
-          {props.wpgraphql.pages.edges.map(page => (
-            <div key={page.node.id}>
-              <h1>{page.node.title}</h1>
-              <div dangerouslySetInnerHTML={{__html: page.node.content}} />
-            </div>
+          {props.wpgraphql.posts.nodes.map(post => (
+            <Link to={`/posts/${post.slug}`} key={post.id}>
+                <h1>{post.title}</h1>
+            </Link>
           ))}
         </div>
       )}/>

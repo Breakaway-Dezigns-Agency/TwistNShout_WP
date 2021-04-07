@@ -1,7 +1,7 @@
 import * as React from "react"
 import {useState} from "react"
 import PropTypes from "prop-types"
-import { graphql, Link, useStaticQuery } from "gatsby"
+import { Link } from "gatsby"
 
 const Header = ({ siteTitle, navMenu, bookButton }) => {
 
