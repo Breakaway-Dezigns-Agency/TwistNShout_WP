@@ -1,28 +1,33 @@
 const path = require("path")
 
-exports.createPages = async ({ graphql, actions }) => {
+exports.createPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
   const result = await graphql(`
-    query PostPages {
+    query WPPages {
       wpgraphql {
-        posts {
-          nodes {
-            id
-            slug
-            title
-            content
+        pages(last: 30) {
+          edges{
+            node {
+              id
+              uri
+              title
+              content
+            }
           }
         }
       }
     }
   `)
+  if (result.err){
+    reporter.panic(`Error loading events, ${result.err}`)
+  }
 
-  result.data.wpgraphql.posts.nodes.forEach(node => {
+  const pages = result.data.wpgraphql.pages.edges.forEach(page => {
     createPage({
-      path: '/post/' + node.slug,
-      component: path.resolve('./src/templates/posts.js'),
+      path: page.node.uri,
+      component: path.resolve(`./src/templates/pages.js`),
       context: {
-        id: node.id,
+        id: page.node.id,
       },
     })
   })
