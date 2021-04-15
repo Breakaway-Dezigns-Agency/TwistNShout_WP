@@ -1,41 +1,34 @@
 import React from "react"
 import Layout from "../components/layout"
-import { graphql, Link, StaticQuery } from 'gatsby'
+import { graphql, useStaticQuery } from 'gatsby'
 
 
-export default function Home() {
-  return (
-    <Layout>
-      <StaticQuery query={graphql`
-      {
-        wpgraphql{
-          pages{
-            edges{
-              node{
-                id
-                title
-                content
-              }
-            }
-          }
-          posts {
-            nodes {
-              id
-              slug
-              title
-              content
-            }
+const Home = () => {
+  const data = useStaticQuery(graphql`
+  query wpHome($id: ID! = "cG9zdDo4") {
+    home: wpgraphql {
+      page(id: $id) {
+        id
+        seo {
+          title
+          breadcrumbs {
+            text
           }
         }
-      }`} render={props =>(
-        <div>
-          {props.wpgraphql.posts.nodes.map(post => (
-            <Link to={`/posts/${post.slug}`} key={post.id}>
-                <h1>{post.title}</h1>
-            </Link>
-          ))}
-        </div>
-      )}/>
+        title
+        content
+      }
+    }
+  }
+  `)
+  console.log(data);
+  const {id, title, content, seo} = data.home.page
+  return (
+    <Layout>
+        <div dangerouslySetInnerHTML={{__html: content}} />
+
     </Layout>
   )
 }
+
+export default Home

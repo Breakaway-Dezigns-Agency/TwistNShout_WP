@@ -13,7 +13,7 @@ module.exports = {
       fontFamily:{
         nav:['Fredoka One'],
         heading: ['Sriracha'],
-        body:['Alef']
+        sans:['Alef']
       },
       colors:{
         yellow: '#FFBE0B',
