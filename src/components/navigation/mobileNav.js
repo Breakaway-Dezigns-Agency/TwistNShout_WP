@@ -2,7 +2,6 @@ import React, {useState} from 'react'
 import { graphql, useStaticQuery } from "gatsby"
 import UniversalLink from "../../utils/universalLink"
 import { FlatListToHierarchical } from "../../utils/FlatListToHierarchical"
-const $ = require('jquery')
 
 const MobileNav = ()=>{
   const data = useStaticQuery(graphql`

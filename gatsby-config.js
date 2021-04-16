@@ -31,22 +31,22 @@ module.exports = {
         icon: `static/images/gatsby-icon.png`, // This path is relative to the root of the site.
       },
     },
-    {
-      resolve: `gatsby-plugin-postcss`,
-      options: {
-        postCssPlugins: [require("tailwindcss")]
-      }
-    },
-    {
-      resolve: `gatsby-transformer-remark`,
-      options: {
-        commonmark: true,
-        footnotes: true,
-        pedantic: true,
-        gfm: true,
-        plugins: [],
-      },
-    },
+    // {
+    //   resolve: `gatsby-plugin-postcss`,
+    //   options: {
+    //     postCssPlugins: [require("tailwindcss")]
+    //   }
+    // },
+    // {
+    //   resolve: `gatsby-transformer-remark`,
+    //   options: {
+    //     commonmark: true,
+    //     footnotes: true,
+    //     pedantic: true,
+    //     gfm: true,
+    //     plugins: [],
+    //   },
+    // },
     {
       resolve: `gatsby-source-graphql`,
       options: {
@@ -55,11 +55,17 @@ module.exports = {
         url: `https://twistandshoutevents.com/graphql`,
       }
     },
-    `gatsby-plugin-sass`,
+    {
+    resolve: `gatsby-plugin-sass`,
+      options: {
+        implementation: require("node-sass"),
+        postCssPlugins: [require('tailwindcss')],
+      },
+    },
     // `gatsby-plugin-react-helmet`,
     `gatsby-plugin-image`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
-    `gatsby-plugin-gatsby-cloud`,
+    // `gatsby-plugin-gatsby-cloud`,
   ],
 }
