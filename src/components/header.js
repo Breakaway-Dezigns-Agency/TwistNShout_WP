@@ -3,36 +3,14 @@ import {useState} from "react"
 import PropTypes from "prop-types"
 import { Link } from "gatsby"
 import MainNav from "./navigation/mainNav"
-import MobileNav from "./navigation/mobileNav"
+// import MobileNav from "./navigation/mobileNav"
 import { StaticImage } from "gatsby-plugin-image"
 
 const Header = ({ siteTitle }) => {
 
   const [active, setActive] = useState(false);
-  const mobileHidden = "mobile-menu md:hidden grid text-center slide-right"
-  const mobileShown = "mobile-menu hidden md:hidden grid text-center"
-
-  // const [open, setOpen] = useState(false);
-  // const data = useStaticQuery(graphql`
-  //   query MainMenu{
-  //     header: wpgraphql {
-  //       menu(id: "dGVybToy") {
-  //         menuItems(last: 20) {
-  //           nodes {
-  //             id
-  //             label
-  //             parentId
-  //             parentDatabaseId
-  //             url
-  //             path
-  //             title
-  //           }
-  //         }
-  //       }
-  //     }
-  //   }
-  // `)
-  // console.log(data);
+  const mobileHidden = "mobile-menu md:hidden grid items-center text-center absolute w-full bg-black left-0 transition-all duration-500"
+  const mobileShown = "mobile-menu md:hidden grid text-center absolute -left-full transition-all"
 
   return (
     <header>
@@ -74,7 +52,7 @@ const Header = ({ siteTitle }) => {
         </div>
         {/* mobile nav */}
         <div className={active ? mobileHidden : mobileShown }>
-          <MobileNav />
+          {/* <MobileNav /> */}
         </div>
       </nav>
   </header>

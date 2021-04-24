@@ -1,4 +1,6 @@
-exports.FlatListToHierarchical = (
+import { graphql, useStaticQuery } from "gatsby"
+
+const FlatListToHierarchical = (
   data = [],
   { idKey = "id", parentKey = "parentId", childrenKey = "children" } = {}
 ) => {
@@ -17,4 +19,24 @@ exports.FlatListToHierarchical = (
   return tree
 }
 
-exports.ensureTrailingSlash = str => (str.endsWith("/") ? str : `${str}/`)
+export const GetMenuItems = () =>{
+  const data = useStaticQuery(graphql`
+    query ServiceSlides {
+      primaryNav: wpgraphql {
+         menuItems(where: {location: PRIMARY}, first: 20) {
+          nodes {
+            id
+            parentId
+            label
+            path
+          }
+        }
+      }
+    }
+  `)
+  // console.log(primaryNav)
+  return {
+    data: FlatListToHierarchical(data.primaryNav.menuItems.nodes)
+  }
+}
+// exports.ensureTrailingSlash = str => (str.endsWith("/") ? str : `${str}/`)
